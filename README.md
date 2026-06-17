@@ -7,7 +7,23 @@ Calculus curriculum coded in Python — migrated from Google Colab to a local VS
 - `notebooks/` — Jupyter notebooks (the calc concepts, same `.ipynb` files used in Colab)
   - `LimitsandSlope.ipynb`
   - `CalculusWithPythonLimits_py.ipynb`
-- `src/` — reusable Python modules (helpers extracted from notebooks)
+- `calc/` — reusable Python package (helpers extracted from the notebooks)
+  - `numerical.py` — difference quotients & one-sided limit estimates
+  - `symbolic.py` — exact limits / equation solving with SymPy
+  - `plotting.py` — matplotlib graphing helper
+
+## Using the `calc` helpers in a notebook
+
+The Jupyter kernel runs from the repo root, so importing just works — no path setup:
+
+```python
+from calc import numerical_slope, numerical_limit, symbolic_limit, plot_function
+from calc.symbolic import x          # a ready-made SymPy symbol
+
+numerical_slope(lambda v: v**2, 1)   # ≈ 2.0   (slope of y=x² at x=1)
+symbolic_limit(3*x**2/(x**2-4), 2, direction='+')   # exact: oo
+plot_function(lambda v: v**2, center=1, points=[(1, 1)], title="y=x²")
+```
 
 ## Setup
 
